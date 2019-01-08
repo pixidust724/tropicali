@@ -7,6 +7,8 @@ var sourcemaps = require('gulp-sourcemaps')
 var browserSync = require('browser-sync').create()
 
 var imagemin = require("gulp-imagemin")
+var ghpages = require("gh-pages")
+
 
 sass.compiler = require('node-sass');
 
@@ -58,5 +60,8 @@ gulp.task("watch", function () {
   gulp.watch("src/img/*", ["images"])
 })
 
+gulp.task("deploy", function (){
+  ghpages.publish("dist")
+})
 
 gulp.task('default', ["html" ,"sass", "fonts", "images", "watch"]);
