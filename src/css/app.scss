@@ -1,0 +1,72 @@
+
+@import "reset";
+@import "typography";
+
+
+$primary-color: green;
+$body-font: "Jost";
+$body-size: 24px;
+$mq-large: 800px;
+$mq-medium: 600px;
+
+// 1st way to do: 
+// @mixin drop-shadow () {
+//     box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.3);
+// }
+
+// second way to do and differ color
+@mixin drop-shadow ($color) {
+    box-shadow: 0 0 10px $color;
+}
+
+// content is after {}
+@mixin mq($width) {
+   @media (max-width: $width) {
+       @content;
+   }
+}
+
+@mixin vertically-middle () {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+body {
+    background-color: $primary-color;
+    color:#fff;
+    font-family: $body-font;
+    line-height: 1.5;
+    font-size: $body-size;
+
+    // @include mq ($mq-large) {
+    //     background-color: yellow;
+    // }
+
+    // @include mq ($mq-medium) {
+    //     background-color: green;
+    // }
+    height: 100vh;
+    @include vertically-middle();
+
+}
+
+section {
+    width: 500px;
+
+    @include mq($mq-medium) {
+            width: 350px;
+            font-size: 16px;
+    }
+
+    // background-color: #fff;
+    // color: $primary-color;
+    // @include drop-shadow(yellow);
+
+    p {
+        margin: 24px 0 0 0;
+        // @include drop-shadow(blue);
+    }
+}
